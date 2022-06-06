@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.change-btn{
+  width: 25px;
+  height: 25px;
+  background: #dfded8;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 10px;
+  user-select: none;
+  cursor: pointer;
+  &:hover{
+    background: #ecebe6;
+  }
+}
+.navigation{
+  position: absolute;
+  bottom: 0px;
+  left:60%;
+  z-index: 1000;
+}
+
+.disable{
+  // display: none;
+  color: #dfded800;
+}
