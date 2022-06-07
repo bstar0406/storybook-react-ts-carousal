@@ -1,3 +1,4 @@
+import React from 'react'
 import { Virtual } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
@@ -48,6 +49,14 @@ const data = [
   },
 ]
 const Slider = () => {
+  const [activeIndex, setActiveIndex] = React.useState<number>(0);
+  const getAcitveIndex = (swiper:any, flag:string) =>{
+    if(flag === 'next') swiper.slideNext();
+    else swiper.slidePrev()
+
+    setActiveIndex(swiper.activeIndex)
+    return swiper.activeIndex;
+  }
   return (
     <>
       <div className="d-flex justify-content-center mb-5">
@@ -65,12 +74,11 @@ const Slider = () => {
         onSwiper={(swiper) => console.log(swiper)}
         virtual
       >
-        <SliderButton />
-
+        <SliderButton getActiveIndex={getAcitveIndex}/>
         {data.map((slideContent, index) => (
           <SwiperSlide key={index} virtualIndex={index}>
             <img src={slideContent.image} alt={'slider' + 1} />
-            <div className={index===1?'disable':''} style={{ fontSize: 30 }}>{slideContent.content}</div>
+            <div className={index===activeIndex?'':'disable'} style={{ fontSize: 30 }}>{slideContent.content}</div>
             <div className="mt-5">{slideContent.client}</div>
           </SwiperSlide>
         ))}
